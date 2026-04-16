@@ -263,3 +263,4 @@ __attribute__((weak)) int index_load(Index *index) {
     index->count = 0;
     return 0;
 }
+// Phase 2 complete
