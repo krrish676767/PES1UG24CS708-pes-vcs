@@ -263,3 +263,4 @@ int object_read(const ObjectID *id, ObjectType *type_out,
 
     return 0;
 }
+// object read complete
