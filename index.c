@@ -294,3 +294,4 @@ int index_add(Index *index, const char *path) {
     // Step 5: Save the updated index atomically
     return index_save(index);
 }
+// Phase 3 complete
