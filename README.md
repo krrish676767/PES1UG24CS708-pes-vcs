@@ -617,3 +617,40 @@ The following questions cover filesystem concepts beyond the implementation scop
 
 ### Q6.2 — GC and Concurrent Commit Race Condition
 [The race condition works like this. A concurrent commit operation first calls tree_from_index which writes new blob and tree objects to the store. At this point the objects exist on disk but HEAD has not been updated yet — no branch points to them. If GC runs at exactly this moment, it scans all branches, finds no reference to the new objects, marks them as unreachable, and deletes them. When the commit then tries to write its commit object referencing those now-deleted trees, the repository becomes corrupt. Git avoids this with two mechanisms. First, a grace period — GC never deletes objects newer than 14 days regardless of reachability, giving in-progress operations time to complete. Second, lock files — the commit operation holds a lock on the refs directory during the pointer-swing step, and GC checks for these locks before running. Our implementation has neither protection, so running GC concurrently with a commit is unsafe.]
+
+
+
+## Screenshots
+
+### Screenshot 1A 
+<img width="1280" height="113" alt="image" src="https://github.com/user-attachments/assets/ce0c8a88-c98a-4405-8a02-53f004deb4c4" />
+
+### Screenshot 1B 
+<img width="2862" height="174" alt="image" src="https://github.com/user-attachments/assets/56eb68d4-4208-4ee2-a5c4-632e5040b348" />
+
+### Screenshot 2A 
+<img width="2736" height="562" alt="image" src="https://github.com/user-attachments/assets/0b819bf6-ccc5-46b9-9e5a-8adf661a06b4" />
+
+### Screenshot 2B 
+<img width="2862" height="136" alt="image" src="https://github.com/user-attachments/assets/9d70320a-29e1-459c-8ea1-6fe9303fbc36" />
+
+
+### Screenshot 3A 
+<img width="1598" height="1520" alt="image" src="https://github.com/user-attachments/assets/00cc95ae-9fdf-4f36-8eb4-d4fc64ccb83f" />
+
+
+### Screenshot 4A 
+<img width="1600" height="119" alt="image" src="https://github.com/user-attachments/assets/62797352-240e-4e06-acf3-ba1a9edfcf98" />
+
+
+### Screenshot 4B 
+<img width="1600" height="518" alt="image" src="https://github.com/user-attachments/assets/ef77b818-9c83-45dd-8419-cbbe83a7132b" />
+
+
+### Screenshot 4C
+<img width="1600" height="150" alt="image" src="https://github.com/user-attachments/assets/193658ef-e695-4219-a3df-b348c7d41027" />
+
+
+### Screenshot FINAL
+<img width="2860" height="1558" alt="image" src="https://github.com/user-attachments/assets/2719c59b-8ea4-493f-83f1-f34a630b7baf" />
+
