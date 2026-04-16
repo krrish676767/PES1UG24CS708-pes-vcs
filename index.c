@@ -296,3 +296,4 @@ int index_add(Index *index, const char *path) {
 }
 // Phase 3 complete
 // Phase 3 save
+// Phase 3 add
